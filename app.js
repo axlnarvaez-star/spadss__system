@@ -1057,23 +1057,48 @@ function approveUser(email) {
     if (!user) return;
 
     user.role = "Evaluator";
-
     localStorage.setItem("users", JSON.stringify(users));
 
-    // SEND EMAIL NOTIFICATION
     emailjs.send("service_u0619h4", "template_bpvi4yc", {
-    user_email: email,
-    user_name: user.fullName
-})
-.then(function(response) {
-    console.log("EMAIL SENT", response.status, response.text);
-    alert("User approved and email sent.");
-})
-.catch(function(error) {
-    console.error("EMAIL FAILED", error);
-    alert("User approved but email failed to send.");
-});
-    alert("User approved successfully and email sent.");
+        user_email: email,
+        user_name: user.fullName
+    })
+    .then(function() {
+        alert("User approved and email sent.");
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
+
+    renderUsers();
+}
+
+    // SEND EMAIL NOTIFICATION
+    function rejectUser(email) {
+
+    if (currentRole !== "Admin") {
+        alert("Admin only.");
+        return;
+    }
+
+    let users = JSON.parse(localStorage.getItem("users")) || [];
+    let user = users.find(u => u.email === email);
+
+    if (!user) return;
+
+    user.role = "Rejected";
+    localStorage.setItem("users", JSON.stringify(users));
+
+    emailjs.send("service_u0619h4", "template_4ytwdwu", {
+        user_email: user.email,
+        user_name: user.fullName
+    })
+    .then(function() {
+        alert("User rejected and email sent.");
+    })
+    .catch(function(error) {
+        console.error(error);
+    });
 
     renderUsers();
 }

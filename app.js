@@ -1044,7 +1044,12 @@ function promoteUser(email) {
     renderUsers();
 }
 
+let approveSent = false;
+
 function approveUser(email) {
+
+    if (approveSent) return;
+    approveSent = true;
 
     if (currentRole !== "Admin") {
         alert("Admin only.");
@@ -1059,7 +1064,6 @@ function approveUser(email) {
     user.role = "Evaluator";
     localStorage.setItem("users", JSON.stringify(users));
 
-    // APPROVE EMAIL
     emailjs.send("service_u0619h4", "template_bpvi4yc", {
         user_email: email,
         user_name: user.fullName
@@ -1071,7 +1075,12 @@ function approveUser(email) {
 }
 
     // SEND EMAIL NOTIFICATION
-    function rejectUser(email) {
+    let emailSent = false;
+
+function rejectUser(email) {
+
+    if (emailSent) return;
+    emailSent = true;
 
     if (currentRole !== "Admin") {
         alert("Admin only.");
@@ -1265,3 +1274,4 @@ function cleanText(text) {
         .replace(/[^\x00-\x7F]/g, "")  // remove non-ASCII chars
         .trim();
 }
+

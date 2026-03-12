@@ -1079,9 +1079,6 @@ function approveUser(email) {
 
 function rejectUser(email) {
 
-    if (emailSent) return;
-    emailSent = true;
-
     if (currentRole !== "Admin") {
         alert("Admin only.");
         return;
@@ -1095,7 +1092,7 @@ function rejectUser(email) {
     user.role = "Rejected";
     localStorage.setItem("users", JSON.stringify(users));
 
-    emailjs.send("service_u0619h4", "template_4ytwdwu", {
+    emailjs.send("service_ywat76j", "template_4ytwdwu", {
         user_email: email,
         user_name: user.fullName
     });
@@ -1274,4 +1271,3 @@ function cleanText(text) {
         .replace(/[^\x00-\x7F]/g, "")  // remove non-ASCII chars
         .trim();
 }
-

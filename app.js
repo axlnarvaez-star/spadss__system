@@ -1059,16 +1059,13 @@ function approveUser(email) {
     user.role = "Evaluator";
     localStorage.setItem("users", JSON.stringify(users));
 
+    // APPROVE EMAIL
     emailjs.send("service_u0619h4", "template_bpvi4yc", {
         user_email: email,
         user_name: user.fullName
-    })
-    .then(function() {
-        alert("User approved and email sent.");
-    })
-    .catch(function(error) {
-        console.error(error);
     });
+
+    alert("User approved and email sent.");
 
     renderUsers();
 }
@@ -1089,16 +1086,13 @@ function approveUser(email) {
     user.role = "Rejected";
     localStorage.setItem("users", JSON.stringify(users));
 
+    // REJECT EMAIL
     emailjs.send("service_u0619h4", "template_4ytwdwu", {
         user_email: user.email,
         user_name: user.fullName
-    })
-    .then(function() {
-        alert("User rejected and email sent.");
-    })
-    .catch(function(error) {
-        console.error(error);
     });
+
+    alert("User rejected and email sent.");
 
     renderUsers();
 }

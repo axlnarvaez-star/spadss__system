@@ -1121,14 +1121,16 @@ users.forEach(user => {
     if (user.role === "Pending") {
 
         actionContent = `
-            <button onclick="this.disabled=true; approveUser('${user.email}')">
-                Approve
-            </button>
-            <button onclick="this.disabled=true; rejectUser('${user.email}')">
-                    style="background:#EF4444;margin-top:5px;">
-                Reject
-            </button>
-        `;
+<button onclick="this.disabled=true; approveUser('${user.email}')">
+Approve
+</button>
+
+<button 
+style="background:#EF4444;margin-top:5px;"
+onclick="this.disabled=true; rejectUser('${user.email}')">
+Reject
+</button>
+`;
 
     } else if (user.role === "Evaluator") {
 
@@ -1262,35 +1264,4 @@ function cleanText(text) {
         .replace(/&/g, "and")
         .replace(/[^\x00-\x7F]/g, "")  // remove non-ASCII chars
         .trim();
-}
-function rejectUser(email) {
-
-    if (currentRole !== "Admin") {
-        alert("Admin only.");
-        return;
-    }
-
-    let users = JSON.parse(localStorage.getItem("users")) || [];
-    let user = users.find(u => u.email === email);
-
-    if (!user) return;
-
-    user.role = "Rejected";
-
-    localStorage.setItem("users", JSON.stringify(users));
-
-       // SEND REJECT EMAIL
-   emailjs.send("service_u0619h4", "template_4ytwdwu", {
-    user_email: user.email,
-    user_name: user.fullName
-})
-.then(function() {
-    alert("User rejected and email sent.");
-})
-.catch(function(error) {
-    console.error(error);
-});
-    alert("User rejected and email notification sent.");
-
-    renderUsers();
 }

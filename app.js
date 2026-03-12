@@ -1086,9 +1086,8 @@ function approveUser(email) {
     user.role = "Rejected";
     localStorage.setItem("users", JSON.stringify(users));
 
-    // REJECT EMAIL
     emailjs.send("service_u0619h4", "template_4ytwdwu", {
-        user_email: user.email,
+        user_email: email,
         user_name: user.fullName
     });
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pending Approval</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="login-container">
+
+    <div class="login-left">
+        <div class="brand-content">
+            <img src="logo.png" class="brand-logo">
+        </div>
+    </div>
+
+    <div class="login-right">
+        <div class="login-box">
+            <h2>Account Pending Approval</h2>
+            <p class="subtitle">
+                Your account is waiting for admin approval.
+                Please contact the administrator.
+            </p>
+
+            <button class="pending-btn" onclick="logout()">
+    Return to Login
+</button>
+        </div>
+    </div>
+
+</div>
+
+<script>
+function logout(){
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("currentRole");
+    window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

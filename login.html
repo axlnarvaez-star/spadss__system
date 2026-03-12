@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Evaluation System</title>
+    <link rel="stylesheet" href="login.css">
+</head>
+<body>
+
+<div class="login-container">
+
+    <!-- LEFT SIDE -->
+    <div class="login-left">
+        <div class="brand-content">
+            <img src="logo.png" class="brand-logo" alt="System Logo">
+            
+        </div>
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="login-right">
+<div class="login-box">
+    <div class="profile-icon">
+    <div class="avatar-circle">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.7 0 5-2.3 5-5s-2.3-5-5-5-5 2.3-5 5 2.3 5 5 5zm0 2c-3.3 0-10 1.7-10 5v3h20v-3c0-3.3-6.7-5-10-5z"/>
+        </svg>
+    </div>
+</div>
+    <h2 id="formTitle">Welcome Back</h2>
+    
+<p class="subtitle" id="formSubtitle">
+    Please login to your dashboard
+</p>
+
+<input type="text" id="fullName" placeholder="Full Name" style="display:none;">
+
+<input type="email" id="email" placeholder="Email Address" autocomplete="off">
+
+<input type="password" id="password" placeholder="Password" autocomplete="new-password">
+
+<input type="password" id="confirmPassword" placeholder="Confirm Password" style="display:none;">
+
+<button id="mainBtn">LOGIN</button>
+
+<p id="switchText" onclick="toggleMode()">
+    Don’t have an account? Create one
+</p>
+        </div>
+    </div>
+
+</div>
+
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+emailjs.init("BKKR-DhI0b6NmgPix");
+})();
+</script>
+</body>
+</html>

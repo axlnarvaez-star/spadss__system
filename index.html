@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Supplier Performance Evaluation System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="layout">
+
+    <!-- SIDEBAR -->
+<aside class="sidebar">
+
+    <div class="logo-section">
+        <img src="logo.png" alt="System Logo">
+
+    </div>
+
+    <p id="welcomeUser" style="font-size:13px; opacity:0.7;"></p>
+    <p id="userRole" style="font-size:12px; opacity:0.6;"></p>
+
+ <button onclick="showSection('dashboardSection')">Dashboard</button>
+<button onclick="showSection('manageSection')">Manage Suppliers</button>
+<button onclick="showSection('historySection')">History & Trend</button>
+<button onclick="showSection('usersSection')">User Management</button>
+
+<button onclick="logout()">Logout</button>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+
+        <!-- DASHBOARD -->
+         
+        <div id="dashboardSection" class="content-section">
+
+            <section class="dashboard">
+                
+                <div class="card">
+                    <h2 id="totalSuppliers">0</h2>
+                    <p>Total Suppliers</p>
+                </div>
+
+                <div class="card">
+                    <h2 id="topSupplier">-</h2>
+                    <p>Top Ranked Supplier</p>
+                </div>
+
+                <div class="card">
+                    <h2 id="averageScore">0</h2>
+                    <p>Average Score</p>
+                </div>
+
+                <div class="card">
+                    <h2 id="highestDelivery">0</h2>
+                    <p>Highest Delivery Rating</p>
+                </div>
+    
+            </section>
+            <!-- 🧠 PERFORMANCE INTELLIGENCE SUMMARY -->
+<section class="insight-section">
+    <section class="insight-section">
+    <h3>Scoring Model</h3>
+    <div class="insight-box">
+        Supplier Score Formula:<br><br>
+        <strong>
+        Score = (Delivery × 0.4) +
+        (Quality × 0.3) +
+        (Price × 0.2) +
+        (Reliability × 0.1)
+        </strong>
+        <br><br>
+        Weighted Criteria:
+        <ul style="margin-top:10px;">
+            <li>Delivery – 40%</li>
+            <li>Quality – 30%</li>
+            <li>Price – 20%</li>
+            <li>Reliability – 10%</li>
+        </ul>
+    </div>
+</section>
+    <h3>Performance Intelligence Summary</h3>
+    <div id="systemInsight" class="insight-box">
+        No analysis available.
+    </div>
+</section>
+
+            <section class="chart-section">
+                <h3>Supplier Score Overview</h3>
+                <canvas id="scoreChart"></canvas>
+            </section>
+
+        </div>
+
+        <!-- EVALUATE -->
+        <div id="manageSection" class="content-section" style="display:none;">
+              <!-- RANKING -->
+        <div>
+
+            <section class="table-section">
+                <h3>Supplier Ranking</h3>
+
+                <div class="scroll-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Rank</th>
+                                <th>Supplier</th>
+                                <th>Product</th>
+                                <th>Delivery</th>
+                                <th>Quality</th>
+                                <th>Price</th>
+                                <th>Reliability</th>
+                                <th>Previous Score</th>
+                                <th>Score</th>
+                                <th>Risk Level</th>
+                                <th>Trend</th>
+                                <th>Previous Analysis</th>                               
+                                <th>Recommendation</th>
+                                <th>Actions</th>
+                            
+                            </tr>
+                        </thead>
+                        <tbody id="supplierTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+        </div>
+            <section class="forms">
+
+                
+
+                <!-- ADD SUPPLIER -->
+                <div class="form-card" id="addSupplierCard">
+    <h3>Add Supplier</h3>
+                    <input type="text" id="supplierName" placeholder="Supplier Name">
+                    <input type="text" id="productSupplied" placeholder="Product Supplied">
+                    <input type="text" id="contactInfo" placeholder="Contact Info">
+                    <button onclick="addSupplier()">Add Supplier</button>
+                </div>
+
+                <!-- EVALUATION -->
+                <div class="form-card" id="evaluationCard">
+                    <h3>Evaluate Supplier</h3>
+
+                    <label>Select Supplier</label>
+                    <select id="supplierSelect"></select>
+
+                    <div class="rating-group">
+                        <label>Delivery</label>
+                        <div class="rating" id="delivery">
+                            <span onclick="setRating('delivery',1)">1</span>
+                            <span onclick="setRating('delivery',2)">2</span>
+                            <span onclick="setRating('delivery',3)">3</span>
+                            <span onclick="setRating('delivery',4)">4</span>
+                            <span onclick="setRating('delivery',5)">5</span>
+                        </div>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Quality</label>
+                        <div class="rating" id="quality">
+                            <span onclick="setRating('quality',1)">1</span>
+                            <span onclick="setRating('quality',2)">2</span>
+                            <span onclick="setRating('quality',3)">3</span>
+                            <span onclick="setRating('quality',4)">4</span>
+                            <span onclick="setRating('quality',5)">5</span>
+                        </div>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Price</label>
+                        <div class="rating" id="price">
+                            <span onclick="setRating('price',1)">1</span>
+                            <span onclick="setRating('price',2)">2</span>
+                            <span onclick="setRating('price',3)">3</span>
+                            <span onclick="setRating('price',4)">4</span>
+                            <span onclick="setRating('price',5)">5</span>
+                        </div>
+                    </div>
+
+                    <div class="rating-group">
+                        <label>Reliability</label>
+                        <div class="rating" id="reliability">
+                            <span onclick="setRating('reliability',1)">1</span>
+                            <span onclick="setRating('reliability',2)">2</span>
+                            <span onclick="setRating('reliability',3)">3</span>
+                            <span onclick="setRating('reliability',4)">4</span>
+                            <span onclick="setRating('reliability',5)">5</span>
+                        </div>
+                    </div>
+
+                    <button onclick="evaluateSupplier()">Compute Score</button>
+                </div>
+
+            </section>
+
+        </div>
+
+      
+
+        <!-- HISTORY -->
+       <div id="historySection" class="content-section">
+        <button onclick="exportSelectedSupplierPDF()" 
+        style="margin-bottom:15px;">
+    Export Selected Supplier Report (PDF)
+</button>
+        <button onclick="exportHistory()" style="margin-bottom:15px;">
+    Export Evaluation History (CSV)
+</button>
+
+            <section class="table-section">
+                <h3>Evaluation History</h3>
+
+                <select id="historySelect" onchange="viewHistory()"></select>
+
+                <div class="scroll-table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Score</th>
+                                <th>Risk</th>
+                                <th>Analysis</th>
+                                <th>Date Evaluated</th>
+                            </tr>
+                        </thead>
+                        <tbody id="historyTable"></tbody>
+                    </table>
+                </div>
+            </section>
+
+            <section class="trend-section">
+                <h3>Supplier Performance Trend</h3>
+                <canvas id="trendChart"></canvas>
+            </section>
+        
+
+        </div>
+
+        <div id="usersSection" class="content-section" style="display:none;">
+
+    <section class="table-section">
+        <h3>User Management</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="usersTable"></tbody>
+        </table>
+
+    </section>
+
+</div>
+
+
+
+    </main>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+(function(){
+emailjs.init("BKKR-DhI0b6NmgPix");
+})();
+</script>
+
+</body>
+</html>

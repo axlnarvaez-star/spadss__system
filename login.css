@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    height: 100vh;
+    background: #0B1220;
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* LEFT SIDE */
+.login-left {
+    flex: 1;
+    background: linear-gradient(135deg, #0f172a, #043528);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    padding: 40px;
+}
+
+.brand-content {
+    text-align: center;
+}
+
+.brand-logo {
+    width: 900px;   /* adjust if gusto mo mas malaki pa */
+    max-width: 80%;
+    height: auto;
+}
+.login-left h1 {
+    font-size: 28px;
+    color: #22c55e;
+    margin-bottom: 15px;
+}
+
+.login-left p {
+    opacity: 0.8;
+}
+
+/* RIGHT SIDE */
+.login-right {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.login-box {
+    width: 350px;
+}
+
+.login-box h2 {
+    color: white;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #9CA3AF;
+    margin-bottom: 30px;
+    font-size: 14px;
+}
+
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 1px solid #1f2937;
+    background: #111827;
+    color: white;
+    outline: none;
+}
+
+.login-box input:focus {
+    border-color: #136b33;
+}
+
+#mainBtn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    background: #22c55e;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#mainBtn:hover {
+    background: #168b41d5;
+}
+
+#switchText {
+    margin-top: 15px;
+    font-size: 13px;
+    color: #9CA3AF;
+    cursor: pointer;
+    text-align: center;
+}
+
+#switchText:hover {
+    color: #22c55e;
+}
+#mainBtn {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg, #0f6424, #158141);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#mainBtn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(34,197,94,0.4);
+}
+.login-container {
+    position: relative;
+}
+
+/* SOFT CENTER BLEND */
+.login-container::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 100%;
+    background: linear-gradient(
+        to right,
+        rgba(6,78,59,0.6),
+        rgba(11,18,32,0.6)
+    );
+    filter: blur(40px);
+    pointer-events: none;
+}
+.login-box {
+    width: 360px;
+    padding: 40px;
+    border-radius: 20px;
+
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}   
+
+.profile-icon {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.avatar-circle {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #949996b0;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.avatar-circle svg {
+    width: 40px;
+    height: 40px;
+}
+.avatar-circle {
+    box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+}
+/* ===== PREMIUM SUCCESS POPUP ===== */
+
+.success-popup {
+    position: fixed;
+    top: 20px;
+    right: -400px;
+    background: #111827;
+    border: 1px solid #22C55E;
+    border-radius: 12px;
+    padding: 20px 25px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+    transition: 0.4s ease;
+    z-index: 9999;
+}
+
+.success-popup.show {
+    right: 20px;
+}
+
+.success-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: #22C55E;
+    font-weight: 500;
+}
+
+.success-icon {
+    background: #22C55E;
+    color: #0B0F14;
+    font-weight: bold;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+/* ===== PENDING PAGE BUTTON ===== */
+.pending-btn {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    background: linear-gradient(135deg, #15803D, #16A34A);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 20px;
+}
+
+.pending-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(34,197,94,0.3);
+}

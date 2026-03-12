@@ -1121,10 +1121,10 @@ users.forEach(user => {
     if (user.role === "Pending") {
 
         actionContent = `
-            <button onclick="approveUser('${user.email}')">
+            <button onclick="this.disabled=true; approveUser('${user.email}')">
                 Approve
             </button>
-            <button onclick="rejectUser('${user.email}')"
+            <button onclick="this.disabled=true; rejectUser('${user.email}')">
                     style="background:#EF4444;margin-top:5px;">
                 Reject
             </button>
